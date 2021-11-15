@@ -1,0 +1,8 @@
+.photo-grid__card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 361px;
+  background-color: #fff;
+  border-radius: 10px;
+}

@@ -4,6 +4,7 @@
   box-sizing: border-box;
   background-size: cover;
   background-repeat: no-repeat;
+  transition: opacity 0.5s linear;
 }
 
 @media screen and (max-width: 767px) {
@@ -18,7 +19,11 @@
   .profile__edit-button {
     min-width: 24px;
     min-height: 24px;
-    cursor: pointer;
     margin-top: calc(120px + 50px - 109px - 24px);
+  }
+
+  .profile__edit-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
   }
 }

@@ -1,0 +1,20 @@
+.photo-grid__like-button {
+  background: url(../../../images/like-button.svg);
+  border: 0;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  min-width: 22px;
+  min-height: 19px;
+  transition: opacity 0.5s linear;
+}
+
+.photo-grid__like-button:active {
+  background: url(../../../images/like-button-active.svg);
+}
+
+@media screen and (min-width: 768px) {
+  .photo-grid__like-button:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+}

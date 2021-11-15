@@ -1,20 +1,20 @@
-.profile__bio {
+.footer__copyright {
   font-weight: 400;
   font-style: normal;
-  margin: 0;
+  color: #545454;
   padding: 0;
-  color: #fff;
+  margin: 0;
 }
 
 @media screen and (max-width: 767px) {
-  .profile__bio {
+  .footer__copyright {
     font-size: 14px;
     line-height: 16.94px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .profile__bio {
+  .footer__copyright {
     font-size: 18px;
     line-height: 21.78px;
   }
