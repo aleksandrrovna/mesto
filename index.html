@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cервис Mesto">
+  <meta name="keywords" content="фотографии, путешествия, места">
+  <meta name="author" content="Nastassia Kazak">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title lang="en">Mesto</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header page__header">
+      <img src="./images/header-logo.svg" class="header__logo" alt="Логотип Место">
+    </header>
+    <main class="content">
+      <section class="profile page__profile">
+        <img src="./images/profile-avatar.jpg" class="profile__avatar" alt="Фото профиля">
+        <div class="profile__info">
+          <div class="profile__text">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__bio">Исследователь океана</p>
+          </div>
+          <button class="profile__edit-button"></button>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="photo-grid page__photo-grid">
+        <div class="photo-grid__card">
+          <img src="./images/amazon-river.jpg" class="photo-grid__image" alt="Река Амазонка">
+          <div class="photo-grid__caption">
+            <h2 class="photo-grid__title">Амазонка</h2>
+            <button class="photo-grid__like-button"></button>
+          </div>
+        </div>
+        <div class="photo-grid__card">
+          <img src="./images/paris.jpg" class="photo-grid__image" alt="Париж">
+          <div class="photo-grid__caption">
+            <h2 class="photo-grid__title">Париж</h2>
+            <button class="photo-grid__like-button"></button>
+          </div>
+        </div>
+        <div class="photo-grid__card">
+          <img src="./images/great-barrier-reef.jpg" class="photo-grid__image" alt="Большой Барьерный риф">
+          <div class="photo-grid__caption">
+            <h2 class="photo-grid__title">Большой Барьерный риф</h2>
+            <button class="photo-grid__like-button"></button>
+          </div>
+        </div>
+        <div class="photo-grid__card">
+          <img src="./images/madagascar.jpg" class="photo-grid__image" alt="Мадагаскар">
+          <div class="photo-grid__caption">
+            <h2 class="photo-grid__title">Мадагаскар</h2>
+            <button class="photo-grid__like-button"></button>
+          </div>
+        </div>
+        <div class="photo-grid__card">
+          <img src="./images/great-blue-hole.jpg" class="photo-grid__image" alt="Большая голубая дыра">
+          <div class="photo-grid__caption">
+            <h2 class="photo-grid__title">Большая голубая дыра</h2>
+            <button class="photo-grid__like-button"></button>
+          </div>
+        </div>
+        <div class="photo-grid__card">
+          <img src="./images/antarctica.jpg" class="photo-grid__image" alt="Антарктида">
+          <div class="photo-grid__caption">
+            <h2 class="photo-grid__title">Антарктида</h2>
+            <button class="photo-grid__like-button"></button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer page__footer">
+      <p class="footer__copyright">© 2021. Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close"></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="popup__form">
+          <input type="text" class="popup__name" name="name" id="name" value="Жак-Ив Кусто">
+          <input type="text" class="popup__bio" name="bio" id="bio" value="Исследователь океана">
+          <input type="submit" class="popup__save-button" name="submit" value="Сохранить">
+        </form>
+      </div>
+  </div>
+  </div>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>
