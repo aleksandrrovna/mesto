@@ -19,11 +19,12 @@
     background: url(../../../images/add-button-desktop.svg);
     min-width: 150px;
     min-height: 50px;
-    cursor: pointer;
     align-self: center;
-    margin-left: 244px;
+    margin-left: auto;
   }
+}
 
+@media screen and (min-width: 1024px) {
   .profile__add-button:hover {
     cursor: pointer;
     opacity: 0.6;
