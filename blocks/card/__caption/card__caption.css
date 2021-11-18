@@ -1,6 +1,7 @@
-.photo-grid__caption {
+.card__caption {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 25px 20px 0 21px;
+  padding-bottom: 31px;
 }
