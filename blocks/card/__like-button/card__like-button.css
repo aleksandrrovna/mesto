@@ -1,4 +1,4 @@
-.photo-grid__like-button {
+.card__like-button {
   background: url(../../../images/like-button.svg);
   border: 0;
   box-sizing: border-box;
@@ -8,12 +8,12 @@
   transition: opacity 0.5s linear;
 }
 
-.photo-grid__like-button:active {
+.card__like-button:active {
   background: url(../../../images/like-button-active.svg);
 }
 
 @media screen and (min-width: 1024px) {
-  .photo-grid__like-button:hover {
+  .card__like-button:hover {
     cursor: pointer;
     opacity: 0.5;
   }

@@ -4,13 +4,19 @@
 }
 
 @media screen and (max-width: 767px) {
-  .page__footer {
+  .footer {
     max-width: 282px;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .page__footer {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .footer {
+    max-width: 581px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .footer {
     max-width: 880px;
   }
 }
