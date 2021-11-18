@@ -22,51 +22,51 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__bio">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button"></button>
+          <button class="profile__edit-button" type="button" aria-label="edit"></button>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button" aria-label="add"></button>
       </section>
       <section class="photo-grid page__photo-grid">
-        <div class="photo-grid__card">
-          <img src="./images/amazon-river.jpg" class="photo-grid__image" alt="Река Амазонка">
-          <div class="photo-grid__caption">
-            <h2 class="photo-grid__title">Амазонка</h2>
-            <button class="photo-grid__like-button"></button>
+        <div class="card">
+          <img src="./images/amazon-river.jpg" class="card__image" alt="Река Амазонка">
+          <div class="card__caption">
+            <h2 class="card__title">Амазонка</h2>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>
         </div>
-        <div class="photo-grid__card">
-          <img src="./images/paris.jpg" class="photo-grid__image" alt="Париж">
-          <div class="photo-grid__caption">
-            <h2 class="photo-grid__title">Париж</h2>
-            <button class="photo-grid__like-button"></button>
+        <div class="card">
+          <img src="./images/paris.jpg" class="card__image" alt="Париж">
+          <div class="card__caption">
+            <h2 class="card__title">Париж</h2>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>
         </div>
-        <div class="photo-grid__card">
-          <img src="./images/great-barrier-reef.jpg" class="photo-grid__image" alt="Большой Барьерный риф">
-          <div class="photo-grid__caption">
-            <h2 class="photo-grid__title">Большой Барьерный риф</h2>
-            <button class="photo-grid__like-button"></button>
+        <div class="card">
+          <img src="./images/great-barrier-reef.jpg" class="card__image" alt="Большой Барьерный риф">
+          <div class="card__caption">
+            <h2 class="card__title">Большой Барьерный риф</h2>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>
         </div>
-        <div class="photo-grid__card">
-          <img src="./images/madagascar.jpg" class="photo-grid__image" alt="Мадагаскар">
-          <div class="photo-grid__caption">
-            <h2 class="photo-grid__title">Мадагаскар</h2>
-            <button class="photo-grid__like-button"></button>
+        <div class="card">
+          <img src="./images/madagascar.jpg" class="card__image" alt="Мадагаскар">
+          <div class="card__caption">
+            <h2 class="card__title">Мадагаскар</h2>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>
         </div>
-        <div class="photo-grid__card">
-          <img src="./images/great-blue-hole.jpg" class="photo-grid__image" alt="Большая голубая дыра">
-          <div class="photo-grid__caption">
-            <h2 class="photo-grid__title">Большая голубая дыра</h2>
-            <button class="photo-grid__like-button"></button>
+        <div class="card">
+          <img src="./images/great-blue-hole.jpg" class="card__image" alt="Большая голубая дыра">
+          <div class="card__caption">
+            <h2 class="card__title">Большая голубая дыра</h2>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>
         </div>
-        <div class="photo-grid__card">
-          <img src="./images/antarctica.jpg" class="photo-grid__image" alt="Антарктида">
-          <div class="photo-grid__caption">
-            <h2 class="photo-grid__title">Антарктида</h2>
-            <button class="photo-grid__like-button"></button>
+        <div class="card">
+          <img src="./images/antarctica.jpg" class="card__image" alt="Антарктида">
+          <div class="card__caption">
+            <h2 class="card__title">Антарктида</h2>
+            <button class="card__like-button" type="button" aria-label="like"></button>
           </div>
         </div>
       </section>
@@ -76,11 +76,11 @@
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close"></button>
+        <button class="popup__close" type="button" aria-label="close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form">
-          <input type="text" class="popup__name" name="name" id="name" value="Жак-Ив Кусто">
-          <input type="text" class="popup__bio" name="bio" id="bio" value="Исследователь океана">
+        <form class="popup__form" name="Информация профиля">
+          <input type="text" class="popup__type-field popup__type-field_name" name="name" id="name" value="Жак-Ив Кусто" placeholder="Введите имя пользователя" required>
+          <input type="text" class="popup__type-field popup__type-field_bio" name="bio" id="bio" value="Исследователь океана" placeholder="Расскажите, чем вы занимаетесь" required>
           <input type="submit" class="popup__save-button" name="submit" value="Сохранить">
         </form>
       </div>
