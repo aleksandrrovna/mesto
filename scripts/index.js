@@ -1,40 +1,3 @@
-const aboutLink = document.querySelector(".profile__edit-button");
-const popup = document.querySelector(".popup");
-const popupCloseButton = popup.querySelector(".popup__close");
-const formElement = popup.querySelector(".popup__form");
-const nameInput = popup.querySelector(".popup__type-field_input_name");
-const jobInput = popup.querySelector(".popup__type-field_input_bio");
-const submit = popup.querySelector('.popup__save-button');
-const profileName = document.querySelector('.profile__name');
-const profileBio = document.querySelector('.profile__bio');
-
-
-function open() {
-  popup.classList.add("popup_opened");
-
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileBio.textContent;
-}
-
-function close() {
-  popup.classList.remove("popup_opened")
-}
-
-function formSubmitHandler (evt) {
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileBio.textContent = jobInput.value;
-
-  close ();
-}
-
-aboutLink.addEventListener('click', open);
-popupCloseButton.addEventListener('click', close);
-formElement.addEventListener('submit', formSubmitHandler);
-
-/* Проектная работа 5 */
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -68,32 +31,107 @@ const initialCards = [
   }
 ];
 
-const listContainerEl = document.querySelector('.photo-grid');
-const templateEl = document.querySelector('.template');
+const popup = document.querySelector('.popup');
+const popupCloseButton = document.querySelectorAll('.popup__close');
+const popupSubmitButton = popup.querySelector('.popup__save-button');
+const profilePopup = document.querySelector('#profile-popup');
+const placePopup = document.querySelector('#place-popup');
 
-function getItem(item) {
-  const newItem = templateEl.content.cloneNode(true);
+const editButton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
 
-  const imageEl = newItem.querySelector('.card__image');
-  imageEl.src = item.link;
+const formElement = popup.querySelector('.popup__form');
+const profileForm = document.querySelector('#profile-form');
+const placeForm = document.querySelector('#place-form');
 
-  const imageAltEl = newItem.querySelector('.card__image');
-  imageAltEl.alt = item.alt;
+const nameInput = popup.querySelector('.popup__type-field_input_name');
+const jobInput = popup.querySelector('.popup__type-field_input_bio');
+const placeInput = document.querySelector('.popup__type-field_input_place');
+const imageInput = document.querySelector('.popup__type-field_input_link');
 
-  const headerEl = newItem.querySelector('.card__title');
-  headerEl.textContent = item.name;
+const profileName = document.querySelector('.profile__name');
+const profileBio = document.querySelector('.profile__bio');
 
-  return newItem;
+const listContainer = document.querySelector('.photo-grid');
+const templateElement = document.querySelector('.template');
+
+/* Добавление атрибутов новых карточек и их возвращение */
+const getCard = (card) => {
+
+  const newCard = templateElement.content.cloneNode(true);
+
+  const imageNewCard = newCard.querySelector('.card__image');
+  imageNewCard.src = card.link;
+
+  const imageAltNewCard = newCard.querySelector('.card__image');
+  imageAltNewCard.alt = card.alt;
+
+  const headerNewCard = newCard.querySelector('.card__title');
+  headerNewCard.textContent = card.name;
+
+  return newCard;
 }
 
-function render() {
-  const html = initialCards.map((item) => {
-    return getItem(item);
+/* Добавление новых карточек в index.html */
+const renderCard = () => {
+
+  const html = initialCards.map((card) => {
+    return getCard(card);
   });
 
-  listContainerEl.append(...html);
+  listContainer.append(...html);
 }
 
-render();
+renderCard();
 
+/* Общее открытие попапов */
+const openPopup = (popupContainer) => popupContainer.classList.add('popup_opened');
 
+/* Общее закрытие попапов */
+const closePopup = (popupContainer) => popupContainer.closest('.popup').classList.remove('popup_opened');
+
+/* Обработчик сабмита формы редактирования профиля */
+const profileFormSubmitHandler = (evt) => {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileBio.textContent = jobInput.value;
+
+  closePopup(profilePopup);
+}
+
+/* Обработчик сабмита формы добавления места */
+const placeFormSubmitHandler = (evt) => {
+  evt.preventDefault();
+
+  const newPlace = placeInput.value;
+  const newImage = imageInput.value;
+
+  const card = {
+    name: newPlace,
+    link: newImage
+  }
+
+  const templateElement = getCard(card);
+
+  listContainer.prepend(templateElement);
+
+  placeInput.value = '';
+  imageInput.value = '';
+
+  closePopup(placePopup);
+}
+
+editButton.addEventListener('click', () => {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileBio.textContent;
+  
+  openPopup(profilePopup)
+});
+
+addButton.addEventListener('click', () => openPopup(placePopup));
+
+profileForm.addEventListener('submit', profileFormSubmitHandler);
+placeForm.addEventListener('submit', placeFormSubmitHandler);
+
+popupCloseButton.forEach((close) => close.addEventListener('click', () => closePopup(close)));
