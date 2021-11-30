@@ -69,6 +69,9 @@ const getCard = (card) => {
   const headerNewCard = newCard.querySelector('.card__title');
   headerNewCard.textContent = card.name;
 
+  const likeButton = newCard.querySelector('.card__like-button');
+  likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('card__like-button_active'));
+
   return newCard;
 }
 
@@ -125,7 +128,7 @@ const placeFormSubmitHandler = (evt) => {
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
-  
+
   openPopup(profilePopup)
 });
 
