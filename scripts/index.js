@@ -83,9 +83,10 @@ const getCard = (card) => {
   const trashButton = newCard.querySelector('.card__trash-button');
   trashButton.addEventListener('click', removeCardHandler);
 
+  /* Попап с увеличением картинок */
   imageNewCard.addEventListener('click', (evt) => {
     evt.preventDefault();
-    
+
     const popupImage = document.querySelector('.popup__image');
     popupImage.src = card.link;
     popupImage.alt = card.alt;
@@ -157,13 +158,6 @@ editButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => openPopup(placePopup));
-
-/* openImage.addEventListener('click', () => {
-
-
-
-  openPopup(imagePopup)
-});*/
 
 profileForm.addEventListener('submit', profileFormSubmitHandler);
 placeForm.addEventListener('submit', placeFormSubmitHandler);
