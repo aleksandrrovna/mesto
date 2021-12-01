@@ -8,10 +8,6 @@
   transition: opacity 0.5s linear;
 }
 
-.card__like-button:active {
-  background: url(../../../images/like-button-active.svg);
-}
-
 @media screen and (min-width: 1024px) {
   .card__like-button:hover {
     cursor: pointer;
