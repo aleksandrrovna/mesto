@@ -32,7 +32,7 @@ const initialCards = [
 ];
 
 const popup = document.querySelector('.popup');
-const popupCloseButton = document.querySelectorAll('.popup__close');
+const popupCloseButtons = document.querySelectorAll('.popup__close');
 const popupSubmitButton = popup.querySelector('.popup__save-button');
 const profilePopup = document.querySelector('#profile-popup');
 const placePopup = document.querySelector('#place-popup');
@@ -58,7 +58,7 @@ const listContainer = document.querySelector('.photo-grid');
 const templateElement = document.querySelector('.template');
 
 /* Удаление карточек */
-const removeCardHandler = (evt) => {
+const handleTrash = (evt) => {
 
   const targetElement = evt.target;
   const card = targetElement.closest('.card');
@@ -82,7 +82,7 @@ const getCard = (card) => {
   likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('card__like-button_active'));
 
   const trashButton = newCard.querySelector('.card__trash-button');
-  trashButton.addEventListener('click', removeCardHandler);
+  trashButton.addEventListener('click', handleTrash);
 
   /* Попап с увеличением картинок */
   imageNewCard.addEventListener('click', (evt) => {
@@ -124,7 +124,7 @@ const openPopup = (popupContainer) => popupContainer.classList.add('popup_opened
 const closePopup = (popupContainer) => popupContainer.closest('.popup').classList.remove('popup_opened');
 
 /* Обработчик сабмита формы редактирования профиля */
-const profileFormSubmitHandler = (evt) => {
+const handleProfileFormSubmit = (evt) => {
 
   evt.preventDefault();
 
@@ -136,7 +136,7 @@ const profileFormSubmitHandler = (evt) => {
 }
 
 /* Обработчик сабмита формы добавления места */
-const placeFormSubmitHandler = (evt) => {
+const handlePlaceFormSubmit = (evt) => {
 
   evt.preventDefault();
 
@@ -160,6 +160,7 @@ const placeFormSubmitHandler = (evt) => {
 }
 
 editButton.addEventListener('click', () => {
+
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
 
@@ -169,7 +170,7 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => openPopup(placePopup));
 
-profileForm.addEventListener('submit', profileFormSubmitHandler);
-placeForm.addEventListener('submit', placeFormSubmitHandler);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
+placeForm.addEventListener('submit', handlePlaceFormSubmit);
 
-popupCloseButton.forEach((close) => close.addEventListener('click', () => closePopup(close)));
+popupCloseButtons.forEach((close) => close.addEventListener('click', () => closePopup(close)));
