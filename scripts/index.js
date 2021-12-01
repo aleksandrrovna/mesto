@@ -63,6 +63,7 @@ const removeCardHandler = (evt) => {
   const targetElement = evt.target;
   const card = targetElement.closest('.card');
   card.remove();
+
 }
 
 /* Добавление атрибутов новых карточек и их возвращение */
@@ -85,6 +86,7 @@ const getCard = (card) => {
 
   /* Попап с увеличением картинок */
   imageNewCard.addEventListener('click', (evt) => {
+
     evt.preventDefault();
 
     const popupImage = document.querySelector('.popup__image');
@@ -95,9 +97,11 @@ const getCard = (card) => {
     popupImageCaption.textContent = card.name;
 
     openPopup(imagePopup);
+
   });
 
   return newCard;
+
 }
 
 /* Добавление новых карточек в index.html */
@@ -108,6 +112,7 @@ const renderCard = () => {
   });
 
   listContainer.append(...html);
+
 }
 
 renderCard();
@@ -120,16 +125,19 @@ const closePopup = (popupContainer) => popupContainer.closest('.popup').classLis
 
 /* Обработчик сабмита формы редактирования профиля */
 const profileFormSubmitHandler = (evt) => {
+
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileBio.textContent = jobInput.value;
 
   closePopup(profilePopup);
+
 }
 
 /* Обработчик сабмита формы добавления места */
 const placeFormSubmitHandler = (evt) => {
+
   evt.preventDefault();
 
   const newPlace = placeInput.value;
@@ -148,13 +156,15 @@ const placeFormSubmitHandler = (evt) => {
   imageInput.value = '';
 
   closePopup(placePopup);
+
 }
 
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
 
-  openPopup(profilePopup)
+  openPopup(profilePopup);
+
 });
 
 addButton.addEventListener('click', () => openPopup(placePopup));
