@@ -55,6 +55,14 @@ const profileBio = document.querySelector('.profile__bio');
 const listContainer = document.querySelector('.photo-grid');
 const templateElement = document.querySelector('.template');
 
+/* Удаление карточек */
+const removeCardHandler = (evt) => {
+
+  const targetElement = evt.target;
+  const card = targetElement.closest('.card');
+  card.remove();
+}
+
 /* Добавление атрибутов новых карточек и их возвращение */
 const getCard = (card) => {
 
@@ -71,6 +79,9 @@ const getCard = (card) => {
 
   const likeButton = newCard.querySelector('.card__like-button');
   likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('card__like-button_active'));
+
+  const trashButton = newCard.querySelector('.card__trash-button');
+  trashButton.addEventListener('click', removeCardHandler);
 
   return newCard;
 }
