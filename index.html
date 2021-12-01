@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title lang="en">Mesto</title>
 </head>
+
 <body>
   <div class="page">
     <header class="header page__header">
@@ -74,28 +76,39 @@
     <footer class="footer page__footer">
       <p class="footer__copyright">© 2021. Mesto Russia</p>
     </footer>
-    <div id="profile-popup" class="popup">
+    <div id="profile-popup" class="popup popup__form-background">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form id="profile-form" class="popup__form" name="Информация профиля">
-          <input type="text" class="popup__type-field popup__type-field_input_name" name="name" id="name" value="Жак-Ив Кусто" placeholder="Имя пользователя" required>
-          <input type="text" class="popup__type-field popup__type-field_input_bio" name="bio" id="bio" value="Исследователь океана" placeholder="Профессиональная деятельность" required>
+          <input type="text" class="popup__type-field popup__type-field_input_name" name="name" id="name"
+            value="Жак-Ив Кусто" placeholder="Имя пользователя" required>
+          <input type="text" class="popup__type-field popup__type-field_input_bio" name="bio" id="bio"
+            value="Исследователь океана" placeholder="Профессиональная деятельность" required>
           <button class="popup__save-button" type="submit" aria-label="submit">Сохранить</button>
         </form>
       </div>
-  </div>
-  <div id="place-popup" class="popup">
-    <div class="popup__container">
-      <button class="popup__close" type="button" aria-label="close"></button>
-      <h3 class="popup__title">Новое место</h3>
-      <form id="place-form" class="popup__form" name="Информация о месте">
-        <input type="text" class="popup__type-field popup__type-field_input_place" name="place" id="place" placeholder="Название" required>
-        <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="link" placeholder="Ссылка на картинку" required>
-        <button class="popup__save-button" type="submit" aria-label="submit">Создать</button>
-      </form>
     </div>
-  </div>
+    <div id="place-popup" class="popup popup__form-background">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="close"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form id="place-form" class="popup__form" name="Информация о месте">
+          <input type="text" class="popup__type-field popup__type-field_input_place" name="place" id="place"
+            placeholder="Название" required>
+          <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="link"
+            placeholder="Ссылка на картинку" required>
+          <button class="popup__save-button" type="submit" aria-label="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div id="image-popup" class="popup popup__image-background">
+      <div class="popup__image-container">
+        <button class="popup__close" type="button" aria-label="close"></button>
+        <img class="popup__image" src="" alt="">
+        <h4 class="popup__image-caption"></h4>
+      </div>
+    </div>
   </div>
   <template class="template">
     <div class="card">
@@ -109,4 +122,5 @@
   </template>
 </body>
 <script src="./scripts/index.js"></script>
+
 </html>
