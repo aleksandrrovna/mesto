@@ -42,6 +42,10 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const openImage = document.querySelector('.card__image');
 
+const profileCloseButton = document.querySelector('#profile-close');
+const placeCloseButton = document.querySelector('#place-close');
+const imageCloseButton = document.querySelector('#image-close');
+
 const formElement = popup.querySelector('.popup__form');
 const profileForm = document.querySelector('#profile-form');
 const placeForm = document.querySelector('#place-form');
@@ -121,7 +125,7 @@ renderCard();
 const openPopup = (popupContainer) => popupContainer.classList.add('popup_opened');
 
 /* Общее закрытие попапов */
-const closePopup = (popupContainer) => popupContainer.closest('.popup').classList.remove('popup_opened');
+const closePopup = (popupContainer) => popupContainer.classList.remove('popup_opened');
 
 /* Обработчик сабмита формы редактирования профиля */
 const handleProfileFormSubmit = (evt) => {
@@ -168,9 +172,11 @@ editButton.addEventListener('click', () => {
 
 });
 
-addButton.addEventListener('click', () => openPopup(placePopup));
-
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
+profileCloseButton.addEventListener('click', () => closePopup(profilePopup));
 
-popupCloseButtons.forEach((close) => close.addEventListener('click', () => closePopup(close)));
+addButton.addEventListener('click', () => openPopup(placePopup));
+placeCloseButton.addEventListener('click', () => closePopup(placePopup));
+
+imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
