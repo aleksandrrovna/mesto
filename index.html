@@ -32,6 +32,7 @@
       <p class="footer__copyright">© 2021. Mesto Russia</p>
     </footer>
     <div id="profile-popup" class="popup">
+      <div class="popup__overlay popup__overlay_background_medium-dark" id="profile-overlay"></div>
       <div class="popup__container">
         <button class="popup__close" id="profile-close" type="button" aria-label="close"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
@@ -53,27 +54,30 @@
       </div>
     </div>
     <div id="place-popup" class="popup">
-      <div class="popup__container">
-        <button class="popup__close" id="place-close" type="button" aria-label="close"></button>
-        <h3 class="popup__title">Новое место</h3>
-        <form id="place-form" class="popup__form" name="Информация о месте" novalidate>
-          <fieldset class="popup__form-set">
-            <label class="popup__form-field">
-              <input type="text" class="popup__type-field popup__type-field_input_place" name="place" id="place"
-              placeholder="Название" minlength="2" maxlength="30" required>
-              <span class="popup__type-field-error place-error"></span>
-            </label>
-            <label class="popup__form-field">
-              <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="link"
-              placeholder="Ссылка на картинку" required>
-              <span class="popup__type-field-error link-error"></span>
-            </label>
-            <button class="popup__save-button" type="submit" aria-label="submit">Создать</button>
-          </fieldset>
-        </form>
-      </div>
+      <div class="popup__overlay popup__overlay_background_medium-dark" id="place-overlay"></div>
+        <div class="popup__container">
+          <button class="popup__close" id="place-close" type="button" aria-label="close"></button>
+          <h3 class="popup__title">Новое место</h3>
+          <form id="place-form" class="popup__form" name="Информация о месте" novalidate>
+            <fieldset class="popup__form-set">
+              <label class="popup__form-field">
+                <input type="text" class="popup__type-field popup__type-field_input_place" name="place" id="place"
+                placeholder="Название" minlength="2" maxlength="30" required>
+                <span class="popup__type-field-error place-error"></span>
+              </label>
+              <label class="popup__form-field">
+                <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="link"
+                placeholder="Ссылка на картинку" required>
+                <span class="popup__type-field-error link-error"></span>
+              </label>
+              <button class="popup__save-button" type="submit" aria-label="submit">Создать</button>
+            </fieldset>
+          </form>
+        </div>
+
     </div>
-    <div id="image-popup" class="popup popup_background_dark">
+    <div id="image-popup" class="popup">
+      <div class="popup__overlay popup__overlay_background_dark" id="image-overlay"></div>
       <div class="popup__image-container">
         <button class="popup__close" id="image-close" type="button" aria-label="close"></button>
         <img class="popup__image" src="#" alt="#">
