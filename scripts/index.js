@@ -28,6 +28,7 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
     alt: 'Снежные горы Байкала'
+
   }
 ];
 
@@ -61,13 +62,16 @@ const profileBio = document.querySelector('.profile__bio');
 const listContainer = document.querySelector('.photo-grid');
 const templateElement = document.querySelector('.template');
 
+const profileOverlay = document.querySelector('#profile-overlay');
+const placeOverlay = document.querySelector('#place-overlay');
+const imageOverlay = document.querySelector('#image-overlay');
+
 /* Удаление карточек */
 const handleTrash = (evt) => {
 
   const targetElement = evt.target;
   const card = targetElement.closest('.card');
   card.remove();
-
 }
 
 /* Добавление атрибутов новых карточек и их возвращение */
@@ -121,11 +125,24 @@ const renderCard = () => {
 
 renderCard();
 
+const handleEscapeKey = (evt) => {
+  if (evt.key === 'Escape') {
+    const openCurrentPopup = document.querySelector('.popup_opened');
+    closePopup(openCurrentPopup);
+  };
+};
+
 /* Общее открытие попапов */
-const openPopup = (popupContainer) => popupContainer.classList.add('popup_opened');
+const openPopup = (popupContainer) => {
+  popupContainer.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscapeKey);
+};
 
 /* Общее закрытие попапов */
-const closePopup = (popupContainer) => popupContainer.classList.remove('popup_opened');
+const closePopup = (popupContainer) => {
+  popupContainer.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscapeKey);
+};
 
 /* Обработчик сабмита формы редактирования профиля */
 const handleProfileFormSubmit = (evt) => {
@@ -163,20 +180,45 @@ const handlePlaceFormSubmit = (evt) => {
 
 }
 
+/* Деактивация кнопки сабмит */
+const deactivateButton = (button) => {
+
+  button.setAttribute('disabled', true);
+  button.classList.add('popup__save-button_inactive');
+
+};
+
+/* Слушатели формы редактирования профиля */
 editButton.addEventListener('click', () => {
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
+
+  const submitProfileButton = profileForm.querySelector('.popup__save-button');
+  deactivateButton(submitProfileButton);
 
   openPopup(profilePopup);
 
 });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
+profileCloseButton.addEventListener('keydown', () => closePopup(profilePopup));
+profileOverlay.addEventListener('click', () => closePopup(profilePopup));
+
+/* Слушатели формы добавления карточки */
+addButton.addEventListener('click', () => {
+
+  const submitPlaceButton = placeForm.querySelector('.popup__save-button');
+  deactivateButton(submitPlaceButton);
+
+  openPopup(placePopup);
+});
+
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
-profileCloseButton.addEventListener('click', () => closePopup(profilePopup));
-
-addButton.addEventListener('click', () => openPopup(placePopup));
 placeCloseButton.addEventListener('click', () => closePopup(placePopup));
+placeOverlay.addEventListener('click', () => closePopup(placePopup));
 
+/* Слушатель формы открытия попапа с картинкой */
 imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
+imageOverlay.addEventListener('click', () => closePopup(imagePopup));
+
