@@ -125,11 +125,24 @@ const renderCard = () => {
 
 renderCard();
 
+const handleEscapeKey = (evt) => {
+  if (evt.key === 'Escape') {
+    const openCurrentPopup = document.querySelector('.popup_opened');
+    closePopup(openCurrentPopup);
+  };
+};
+
 /* Общее открытие попапов */
-const openPopup = (popupContainer) => popupContainer.classList.add('popup_opened');
+const openPopup = (popupContainer) => {
+  popupContainer.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscapeKey);
+};
 
 /* Общее закрытие попапов */
-const closePopup = (popupContainer) => popupContainer.classList.remove('popup_opened');
+const closePopup = (popupContainer) => {
+  popupContainer.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscapeKey);
+};
 
 /* Обработчик сабмита формы редактирования профиля */
 const handleProfileFormSubmit = (evt) => {
@@ -181,24 +194,24 @@ editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
 
-  const submitButton = profileForm.querySelector('.popup__save-button');
-  deactivateButton(submitButton);
+  const submitProfileButton = profileForm.querySelector('.popup__save-button');
+  deactivateButton(submitProfileButton);
 
   openPopup(profilePopup);
 
 });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
-profileCloseButton.addEventListener('click', () => closePopup(profilePopup));
+profileCloseButton.addEventListener('keydown', () => closePopup(profilePopup));
 profileOverlay.addEventListener('click', () => closePopup(profilePopup));
 
 /* Слушатели формы добавления карточки */
 addButton.addEventListener('click', () => {
 
-  const submitButton = placeForm.querySelector('.popup__save-button');
-  deactivateButton(submitButton);
+  const submitPlaceButton = placeForm.querySelector('.popup__save-button');
+  deactivateButton(submitPlaceButton);
 
-  openPopup(placePopup)
+  openPopup(placePopup);
 });
 
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
@@ -208,3 +221,4 @@ placeOverlay.addEventListener('click', () => closePopup(placePopup));
 /* Слушатель формы открытия попапа с картинкой */
 imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
 imageOverlay.addEventListener('click', () => closePopup(imagePopup));
+
