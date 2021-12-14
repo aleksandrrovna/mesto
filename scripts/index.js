@@ -28,6 +28,7 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
     alt: 'Снежные горы Байкала'
+
   }
 ];
 
@@ -67,7 +68,6 @@ const handleTrash = (evt) => {
   const targetElement = evt.target;
   const card = targetElement.closest('.card');
   card.remove();
-
 }
 
 /* Добавление атрибутов новых карточек и их возвращение */
@@ -163,20 +163,41 @@ const handlePlaceFormSubmit = (evt) => {
 
 }
 
+/* Деактивация кнопки сабмит */
+const deactivateButton = (button) => {
+
+  button.setAttribute('disabled', true);
+  button.classList.add('popup__save-button_inactive');
+
+};
+
+/* Слушатели формы редактирования профиля */
 editButton.addEventListener('click', () => {
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
+
+  const submitButton = profileForm.querySelector('.popup__save-button');
+  deactivateButton(submitButton);
 
   openPopup(profilePopup);
 
 });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
-placeForm.addEventListener('submit', handlePlaceFormSubmit);
 profileCloseButton.addEventListener('click', () => closePopup(profilePopup));
 
-addButton.addEventListener('click', () => openPopup(placePopup));
+/* Слушатели формы добавления карточки */
+addButton.addEventListener('click', () => {
+
+  const submitButton = placeForm.querySelector('.popup__save-button');
+  deactivateButton(submitButton);
+
+  openPopup(placePopup)
+});
+
+placeForm.addEventListener('submit', handlePlaceFormSubmit);
 placeCloseButton.addEventListener('click', () => closePopup(placePopup));
 
+/* Слушатель формы открытия попапа с картинкой */
 imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
