@@ -33,21 +33,17 @@ const initialCards = [
 ];
 
 const popup = document.querySelector('.popup');
-const popupCloseButtons = document.querySelectorAll('.popup__close');
-const popupSubmitButton = popup.querySelector('.popup__save-button');
 const profilePopup = document.querySelector('#profile-popup');
 const placePopup = document.querySelector('#place-popup');
 const imagePopup = document.querySelector('#image-popup');
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const openImage = document.querySelector('.card__image');
 
 const profileCloseButton = document.querySelector('#profile-close');
 const placeCloseButton = document.querySelector('#place-close');
 const imageCloseButton = document.querySelector('#image-close');
 
-const formElement = popup.querySelector('.popup__form');
 const profileForm = document.querySelector('#profile-form');
 const placeForm = document.querySelector('#place-form');
 
@@ -65,6 +61,12 @@ const templateElement = document.querySelector('.template');
 const profileOverlay = document.querySelector('#profile-overlay');
 const placeOverlay = document.querySelector('#place-overlay');
 const imageOverlay = document.querySelector('#image-overlay');
+
+const popupImage = document.querySelector('.popup__image');
+const popupImageCaption = document.querySelector('.popup__image-caption');
+
+const submitProfileButton = profileForm.querySelector('.popup__save-button');
+const submitPlaceButton = placeForm.querySelector('.popup__save-button');
 
 /* Удаление карточек */
 const handleTrash = (evt) => {
@@ -97,11 +99,9 @@ const getCard = (card) => {
 
     evt.preventDefault();
 
-    const popupImage = document.querySelector('.popup__image');
     popupImage.src = card.link;
     popupImage.alt = card.alt;
 
-    const popupImageCaption = document.querySelector('.popup__image-caption');
     popupImageCaption.textContent = card.name;
 
     openPopup(imagePopup);
@@ -194,7 +194,6 @@ editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
 
-  const submitProfileButton = profileForm.querySelector('.popup__save-button');
   deactivateButton(submitProfileButton);
 
   openPopup(profilePopup);
@@ -202,13 +201,12 @@ editButton.addEventListener('click', () => {
 });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
-profileCloseButton.addEventListener('keydown', () => closePopup(profilePopup));
+profileCloseButton.addEventListener('click', () => closePopup(profilePopup));
 profileOverlay.addEventListener('click', () => closePopup(profilePopup));
 
 /* Слушатели формы добавления карточки */
 addButton.addEventListener('click', () => {
 
-  const submitPlaceButton = placeForm.querySelector('.popup__save-button');
   deactivateButton(submitPlaceButton);
 
   openPopup(placePopup);
@@ -218,7 +216,6 @@ placeForm.addEventListener('submit', handlePlaceFormSubmit);
 placeCloseButton.addEventListener('click', () => closePopup(placePopup));
 placeOverlay.addEventListener('click', () => closePopup(placePopup));
 
-/* Слушатель формы открытия попапа с картинкой */
+/* Слушатели попапа с картинкой */
 imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
 imageOverlay.addEventListener('click', () => closePopup(imagePopup));
-
