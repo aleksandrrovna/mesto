@@ -201,7 +201,7 @@ editButton.addEventListener('click', () => {
 });
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
-profileCloseButton.addEventListener('keydown', () => closePopup(profilePopup));
+profileCloseButton.addEventListener('click', () => closePopup(profilePopup));
 profileOverlay.addEventListener('click', () => closePopup(profilePopup));
 
 /* Слушатели формы добавления карточки */
@@ -216,6 +216,6 @@ placeForm.addEventListener('submit', handlePlaceFormSubmit);
 placeCloseButton.addEventListener('click', () => closePopup(placePopup));
 placeOverlay.addEventListener('click', () => closePopup(placePopup));
 
-/* Слушатель формы открытия попапа с картинкой */
+/* Слушатели попапа с картинкой */
 imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
 imageOverlay.addEventListener('click', () => closePopup(imagePopup));
