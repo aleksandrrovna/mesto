@@ -1,39 +1,6 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    alt: 'Горы Архыза с остатками талого снега'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    alt: 'Зимний пейзаж реки в Челябинской области'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    alt: 'Ряд многоэтажных домов в Иваново'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    alt: 'Флора у подножия гор на Камчатке'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    alt: 'Железная дорога в лесу Холмогорского района'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    alt: 'Снежные горы Байкала'
-
-  }
-];
+import { initialCards } from './initialCards.js';
 
 export const imagePopup = document.querySelector('#image-popup');
 export const popupImage = document.querySelector('.popup__image');
@@ -67,9 +34,6 @@ const profileOverlay = document.querySelector('#profile-overlay');
 const placeOverlay = document.querySelector('#place-overlay');
 const imageOverlay = document.querySelector('#image-overlay');
 
-const submitProfileButton = profileForm.querySelector('.popup__save-button');
-const submitPlaceButton = placeForm.querySelector('.popup__save-button');
-
 const enableValidation = {
   formSelector: '.popup__form-set',
   inputSelector: '.popup__type-field',
@@ -100,34 +64,26 @@ const closePopup = (popupContainer) => {
 
 // Добавление карточки
 const addCard = (card, container) => container.prepend(card);
+const initializeCard = (data, template) => new Card(data, template);
 
 initialCards.reverse().forEach((card) => {
-	const newCard = new Card(card, '.template');
+	const newCard = initializeCard(card, '.template');
 	const newElement = newCard.generate();
   addCard(newElement, listContainer);
 });
 
-// Валидация форм
-const editProfileFormValidator = new FormValidator (enableValidation, profileForm);
-const addCardFormValidator = new FormValidator (enableValidation, placeForm);
-
-addCardFormValidator.enableValidation();
-editProfileFormValidator.enableValidation();
-
 // Обработчик сабмита формы редактирования профиля
-const handleProfileFormSubmit = (evt) => {
-  evt.preventDefault();
+const handleProfileFormSubmit = () => {
   profileName.textContent = nameInput.value;
   profileBio.textContent = jobInput.value;
   closePopup(profilePopup);
 };
 
 // Обработчик сабмита формы добавления места
-const handlePlaceFormSubmit = (evt) => {
-  evt.preventDefault();
+const handlePlaceFormSubmit = () => {
   const newPlace = placeInput.value;
   const newImage = imageInput.value;
-  const addedCard = new Card(
+  const addedCard = initializeCard(
     {
     name: newPlace,
     link: newImage
@@ -138,22 +94,23 @@ const handlePlaceFormSubmit = (evt) => {
   const submittedCard = addedCard.generate();
   addCard(submittedCard, listContainer);
 
-  placeInput.value = '';
-  imageInput.value = '';
+  placeForm.reset();
+
   closePopup(placePopup);
 };
 
-// Деактивация кнопки сабмит
-const deactivateButton = (button) => {
-  button.setAttribute('disabled', true);
-  button.classList.add('popup__save-button_inactive');
-};
+// Валидация форм
+const editProfileFormValidator = new FormValidator (enableValidation, profileForm);
+const addCardFormValidator = new FormValidator (enableValidation, placeForm);
+
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
 // Слушатели формы редактирования профиля
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
-  deactivateButton(submitProfileButton);
+  editProfileFormValidator.disableValidation();
   openPopup(profilePopup);
 });
 
@@ -163,7 +120,8 @@ profileOverlay.addEventListener('click', () => closePopup(profilePopup));
 
 // Слушатели формы добавления карточки
 addButton.addEventListener('click', () => {
-  deactivateButton(submitPlaceButton);
+  addCardFormValidator.deactivateButton();
+  addCardFormValidator.disableValidation();
   openPopup(placePopup);
 });
 
