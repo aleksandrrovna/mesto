@@ -39,13 +39,7 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    if (this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute('disabled', true);
-    } else {
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
-      this._buttonElement.removeAttribute('disabled');
-    }
+    if (this._hasInvalidInput()) {this.deactivateButton()} else {this.activateButton()}
   }
 
   _setEventListeners() {
@@ -70,6 +64,11 @@ class FormValidator {
   deactivateButton() {
     this._buttonElement.setAttribute('disabled', true);
     this._buttonElement.classList.add(this._inactiveButtonClass);
+  }
+
+  activateButton() {
+    this._buttonElement.removeAttribute('disabled');
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
   }
 };
 
