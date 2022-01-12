@@ -64,12 +64,11 @@ const closePopup = (popupContainer) => {
 
 // Добавление карточки
 const addCard = (card, container) => container.prepend(card);
-const initializeCard = (data, template) => new Card(data, template);
+const initializeCard = (data) => new Card(data, '.template').generate();
 
 initialCards.reverse().forEach((card) => {
-	const newCard = initializeCard(card, '.template');
-	const newElement = newCard.generate();
-  addCard(newElement, listContainer);
+	const newCard = initializeCard(card);
+  addCard(newCard, listContainer);
 });
 
 // Обработчик сабмита формы редактирования профиля
@@ -87,12 +86,11 @@ const handlePlaceFormSubmit = () => {
     {
     name: newPlace,
     link: newImage
-    },
-    '.template'
-  );
+    });
 
-  const submittedCard = addedCard.generate();
-  addCard(submittedCard, listContainer);
+  addCard(addedCard, listContainer);
+
+  addCardFormValidator.deactivateButton();
 
   placeForm.reset();
 
@@ -110,6 +108,7 @@ addCardFormValidator.enableValidation();
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
+  editProfileFormValidator.activateButton();
   editProfileFormValidator.disableValidation();
   openPopup(profilePopup);
 });
@@ -120,7 +119,7 @@ profileOverlay.addEventListener('click', () => closePopup(profilePopup));
 
 // Слушатели формы добавления карточки
 addButton.addEventListener('click', () => {
-  addCardFormValidator.deactivateButton();
+
   addCardFormValidator.disableValidation();
   openPopup(placePopup);
 });
