@@ -1,6 +1,7 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards } from './initialCards.js';
+import { Section } from './Section.js';
 
 export const imagePopup = document.querySelector('#image-popup');
 export const popupImage = document.querySelector('.popup__image');
@@ -63,13 +64,21 @@ const closePopup = (popupContainer) => {
 };
 
 // Добавление карточки
-const addCard = (card, container) => container.prepend(card);
-const initializeCard = (data) => new Card(data, '.template').generate();
+const renderCard = (item) => {
+  const newCard = new Card(item, '.template');
+  const initializeCard = newCard.generate();
+  return initializeCard;
+  cardList.addItem(initializeCard);
+};
 
-initialCards.reverse().forEach((card) => {
-	const newCard = initializeCard(card);
-  addCard(newCard, listContainer);
-});
+const cardList = new Section({
+  items: initialCards.reverse(),
+  renderer: renderCard,
+},
+  '.photo-grid'
+);
+
+cardList.renderItems();
 
 // Обработчик сабмита формы редактирования профиля
 const handleProfileFormSubmit = () => {
@@ -82,24 +91,26 @@ const handleProfileFormSubmit = () => {
 const handlePlaceFormSubmit = () => {
   const newPlace = placeInput.value;
   const newImage = imageInput.value;
-  const addedCard = initializeCard(
-    {
-    name: newPlace,
-    link: newImage
-    });
 
-  addCard(addedCard, listContainer);
+  const addedCard = new Section({
+    items: [{
+      name: newPlace,
+      link: newImage
+    }],
+    renderer: renderCard,
+  },
+    '.photo-grid'
+  );
 
+  addedCard.renderItems();
   addCardFormValidator.deactivateButton();
-
   placeForm.reset();
-
   closePopup(placePopup);
 };
 
 // Валидация форм
-const editProfileFormValidator = new FormValidator (enableValidation, profileForm);
-const addCardFormValidator = new FormValidator (enableValidation, placeForm);
+const editProfileFormValidator = new FormValidator(enableValidation, profileForm);
+const addCardFormValidator = new FormValidator(enableValidation, placeForm);
 
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
@@ -109,7 +120,7 @@ editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileBio.textContent;
   editProfileFormValidator.activateButton();
-  editProfileFormValidator.disableValidation();
+  editProfileFormValidator.resetErrors();
   openPopup(profilePopup);
 });
 
@@ -120,7 +131,7 @@ profileOverlay.addEventListener('click', () => closePopup(profilePopup));
 // Слушатели формы добавления карточки
 addButton.addEventListener('click', () => {
 
-  addCardFormValidator.disableValidation();
+  addCardFormValidator.resetErrors();
   openPopup(placePopup);
 });
 
