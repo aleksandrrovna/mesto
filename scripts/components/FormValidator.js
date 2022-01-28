@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(config, form) {
     this._formElement = form;
     this._inputErrorClass = config.inputErrorClass;
@@ -71,5 +71,3 @@ class FormValidator {
     this._buttonElement.classList.remove(this._inactiveButtonClass);
   }
 };
-
-export { FormValidator };
