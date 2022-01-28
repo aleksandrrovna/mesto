@@ -6,17 +6,16 @@
   <meta name="description" content="Cервис Mesto">
   <meta name="keywords" content="фотографии, путешествия, места">
   <meta name="author" content="Nastassia Kazak">
-  <link rel="stylesheet" href="./pages/index.css">
   <title lang="en">Mesto</title>
 </head>
 <body>
   <div class="page">
     <header class="header page__header">
-      <img src="./images/header-logo.svg" class="header__logo" alt="Логотип Место">
+      <img src="<%=require('./images/header-logo.svg')%>" class="header__logo" alt="Логотип Место">
     </header>
     <main class="content">
       <section class="profile page__profile">
-        <img src="./images/profile-avatar.jpg" class="profile__avatar" alt="Фото профиля">
+        <img src="<%=require('./images/profile-avatar.jpg')%>" class="profile__avatar" alt="Фото профиля">
         <div class="profile__info">
           <div class="profile__text">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -96,5 +95,4 @@
     </div>
   </template>
 </body>
-<script type="module" src="./scripts/pages/index.js"></script>
 </html>
