@@ -31,7 +31,6 @@ const handlePlaceFormSubmit = ({ place, link }) => {
 
   addCardFormValidator.deactivateButton();
   popupWithPlaceForm.close();
-  popupWithPlaceForm.removeEventListeners();
 };
 
 // Информация о пользователе на странице
