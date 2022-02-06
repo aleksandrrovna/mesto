@@ -11,6 +11,7 @@ import {
   imageInput,
   enableValidation
 } from '../utils/constants.js';
+import { Api } from '../components/Api.js';
 import { initialCards } from '../utils/initialCards.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -18,6 +19,33 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
+
+// API
+const api = new Api({
+  address: 'https://mesto.nomoreparties.co/v1/cohort-35',
+  headers: {
+    authorization: '4232a76a-b492-41bd-8079-c0b570c3fc12',
+    'Content-Type': 'application/json'
+  }
+});
+
+// Загрузка информации о пользователе с сервера
+const getServerUserInfo = api.getUserInfo()
+  .then((ServerUserInfo) => {
+    return ServerUserInfo
+  })
+  .catch((error) => {
+    console.log(`Ошибка загрузки информации о пользователе с сервера ${error}`)
+  });
+
+// Загрузка карточек с сервера
+const getServerInitialCards = api.getInitialCards()
+  .then((ServerInitialCards) => {
+    return ServerInitialCards
+  })
+  .catch((error) => {
+    console.log(`Ошибка загрузки карточек с сервера ${error}`)
+  });
 
 // Обработчик сабмита формы добавления места
 const handlePlaceFormSubmit = ({ place, link }) => {
@@ -36,13 +64,23 @@ const handlePlaceFormSubmit = ({ place, link }) => {
 // Информация о пользователе на странице
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
-  profileBioSelector: '.profile__bio'
+  profileBioSelector: '.profile__bio'/*,
+ profileAvatarSelector: '.profile__avatar'*/
 });
 
 // Обработчик сабмита формы редактирования профиля
-const handleProfileFormSubmit = ({ name, bio }) => {
-  userInfo.setUserInfo(name, bio);
-  popupWithProfileForm.close();
+const handleProfileFormSubmit = (newData) => {
+  api.editProfile(newData)
+    .then((response) => {
+      userInfo.setUserInfo({
+        newProfileName: response.name,
+        newProfileBio: response.about
+      });
+      popupWithProfileForm.close();
+    })
+    .catch((error) => {
+      console.log(`Ошибка редактирования профиля ${error}`)
+    })
 };
 
 // Попапы
