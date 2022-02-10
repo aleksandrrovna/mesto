@@ -47,25 +47,11 @@ const getServerInitialCards = api.getInitialCards()
     console.log(`Ошибка загрузки карточек с сервера ${error}`)
   });
 
-// Обработчик сабмита формы добавления места
-const handlePlaceFormSubmit = ({ place, link }) => {
-
-  const addedCard = renderCard({
-    name: place,
-    link: link
-  });
-
-  cardList.addItem(addedCard);
-
-  addCardFormValidator.deactivateButton();
-  popupWithPlaceForm.close();
-};
-
 // Информация о пользователе на странице
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
-  profileBioSelector: '.profile__bio'/*,
- profileAvatarSelector: '.profile__avatar'*/
+  profileBioSelector: '.profile__bio',
+  /*profileAvatarSelector: '.profile__avatar'*/
 });
 
 // Обработчик сабмита формы редактирования профиля
@@ -88,25 +74,57 @@ const popupWithImage = new PopupWithImage('#image-popup');
 const popupWithProfileForm = new PopupWithForm('#profile-popup', handleProfileFormSubmit);
 const popupWithPlaceForm = new PopupWithForm('#place-popup', handlePlaceFormSubmit);
 
+// Обработчик сабмита формы добавления места
+const handlePlaceFormSubmit = (newCard) => {
+
+  const addedCard = renderCard({
+    name: newCard.name,
+    link: newCard.link
+  });
+  api.addCard(addedCard)
+    .then(() => {
+      cardList.renderItems();
+      cardList.addItem(addedCard);
+      addCardFormValidator.deactivateButton();
+      popupWithPlaceForm.close();
+    })
+    .catch((error) => {
+      console.log(`Ошибка добавления новой карточки ${error}`)
+    })
+};
+
 // Добавление карточки
 const renderCard = (item) => {
   const newCard = new Card({
     data: item,
     selector: '.template',
-    handleCardClick: () => popupWithImage.open(item)
+    handleCardClick: () => {
+      popupWithImage.open(item);
+      // удаления и лайки
+    }
   });
-  const initializeCard = newCard.generate();
-  return initializeCard;
+  return newCard.generate();
 };
 
 const cardList = new Section({
-  items: initialCards.reverse(),
+  items: [].reverse(),
   renderer: renderCard,
 },
   '.photo-grid'
 );
 
-cardList.renderItems();
+Promise.all([getServerUserInfo, getServerInitialCards])
+  .then(([ServerUserInfo, ServerInitialCards]) => {
+    userInfo.setUserInfo({
+      newProfileName: ServerUserInfo.name,
+      newProfileBio: ServerUserInfo.about,
+      // newProfileAvatar: ServerUserInfo.avatar
+    });
+    cardList.renderItems();
+  })
+  .catch((error) => {
+    console.log(`Ошибка загрузки данных с сервера ${error}`);
+  });
 
 // Валидация форм
 const editProfileFormValidator = new FormValidator(enableValidation, profileForm);

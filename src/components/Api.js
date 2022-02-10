@@ -5,7 +5,7 @@ export class Api {
   }
 
   _handleResponse(response) {
-    response.ok
+    return response.ok
       ? response.json()
       : Promise.reject(`Ошибка ${response.status}`)
   }
@@ -30,6 +30,14 @@ export class Api {
         name: userData.name,
         about: userData.bio
       })
+    }).then((response) => this._handleResponse(response))
+  }
+
+  addCard(cardObject) {
+    return fetch(`${this._address}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(cardObject)
     }).then((response) => this._handleResponse(response))
   }
 }
