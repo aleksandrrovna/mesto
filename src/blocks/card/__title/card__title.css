@@ -4,9 +4,10 @@
   font-weight: 900;
   font-style: normal;
   color: #000;
-  margin: 0;
+  margin: 3px 0 0;
   padding: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  align-self: flex-start;
 }
