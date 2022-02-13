@@ -3,8 +3,13 @@ import './index.css';
 import {
   editButton,
   addButton,
+  updateButton,
+  profileButton,
+  placeButton,
+  avatarButton,
   profileForm,
   placeForm,
+  AvatarForm,
   nameInput,
   jobInput,
   placeInput,
@@ -52,7 +57,7 @@ const getServerInitialCards = api.getInitialCards()
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__name',
   profileBioSelector: '.profile__bio',
-  /*profileAvatarSelector: '.profile__avatar'*/
+  profileAvatarSelector: '.profile__avatar'
 });
 
 // Обработчик сабмита формы редактирования профиля
@@ -61,13 +66,18 @@ const handleProfileFormSubmit = (newProfileData) => {
     .then((response) => {
       userInfo.setUserInfo({
         newProfileName: response.name,
-        newProfileBio: response.about
+        newProfileBio: response.about,
+        newProfileAvatar: response.avatar
       });
+      profileButton.textContent = 'Сохранение...';
       popupWithProfileForm.close();
     })
     .catch((error) => {
       console.log(`Ошибка редактирования профиля ${error}`)
     })
+    .finally(() => {
+      profileButton.textContent = 'Сохранить';
+    });
 };
 
 // Добавление карточки
@@ -100,10 +110,8 @@ const cardList = new Section({
 const handlePlaceFormSubmit = (newCardData) => {
   api.addCard(newCardData)
     .then((response) => {
-      const addedCard = renderCard({
-        name: response.name,
-        link: response.link
-      });
+      const addedCard = renderCard(response);
+      placeButton.textContent = 'Создание...';
       cardList.addItem(addedCard);
       addCardFormValidator.deactivateButton();
       popupWithPlaceForm.close();
@@ -111,16 +119,37 @@ const handlePlaceFormSubmit = (newCardData) => {
     .catch((error) => {
       console.log(`Ошибка добавления новой карточки ${error}`);
     })
+    .finally(() => {
+      placeButton.textContent = 'Создать';
+    });
 };
 
+// Обработчик сабмита формы обновления аватара
 const handleAvatarFormSubmit = (newAvatar) => {
-
+  api.updateAvatar(newAvatar)
+    .then((response) => {
+      userInfo.setUserInfo({
+        newProfileName: response.name,
+        newProfileBio: response.about,
+        newProfileAvatar: response.avatar
+      });
+      avatarButton.textContent = 'Сохранение...';
+      popupWithAvatarForm.close();
+    })
+    .catch((error) => {
+      console.log(`Ошибка обновления аватара ${error}`);
+    })
+    .finally(() => {
+      avatarButton.textContent = 'Сохранить';
+    });
 };
 
+// Открытие попапа с подтверждением удаления карточки
 const removeCardWindow = (item) => {
   popupWithConfirmation.open(item);
-}
+};
 
+// Обработчик удаления карточки
 const handleConfirmRemoval = (item) => {
   api.removeCard(item.getCardId())
     .then(() => {
@@ -144,7 +173,7 @@ Promise.all([getServerUserInfo, getServerInitialCards])
     userInfo.setUserInfo({
       newProfileName: ServerUserInfo.name,
       newProfileBio: ServerUserInfo.about,
-      // newProfileAvatar: ServerUserInfo.avatar
+      newProfileAvatar: ServerUserInfo.avatar
     });
     userInfo.setId(ServerUserInfo._id);
     cardList.renderItems(ServerInitialCards);
@@ -172,14 +201,16 @@ const likeCard = (card) => {
         console.log(`Ошибка снятия лайка ${error}`);
       });
   }
-}
+};
 
 // Валидация форм
 const editProfileFormValidator = new FormValidator(enableValidation, profileForm);
 const addCardFormValidator = new FormValidator(enableValidation, placeForm);
+const updateAvatarFormValidator = new FormValidator(enableValidation, AvatarForm);
 
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+updateAvatarFormValidator.enableValidation();
 
 // Слушатели формы редактирования профиля
 editButton.addEventListener('click', () => {
@@ -208,4 +239,9 @@ popupWithImage.setEventListeners();
 popupWithConfirmation.setEventListeners();
 
 // Слушатели попапа с обновлением аватара
+updateButton.addEventListener('click', () => {
+  updateAvatarFormValidator.resetErrors();
+  popupWithAvatarForm.open();
+});
+
 popupWithAvatarForm.setEventListeners();

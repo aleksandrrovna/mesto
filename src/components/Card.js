@@ -2,10 +2,12 @@ export class Card {
   constructor({ data, selector, handleCardClick, userId, handleCardRemove, handleCardLike }) {
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes.length;
-    this._ownerId = data.owner._id;
-    this._userId = userId;
+
     this._cardId = data._id;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
+
+    this._likes = data.likes.length;
     this._isLike = data.likes.some(item => item._id == this._userId);
 
     this._selector = selector;

@@ -41,7 +41,7 @@ export class Api {
     }).then((response) => this._handleResponse(response))
   }
 
-  removeCard(cardObject) {
+  removeCard(cardId) {
     return fetch(`${this._address}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
@@ -51,14 +51,24 @@ export class Api {
   putLike(id) {
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: 'PUT',
-      headers: this._headers,
+      headers: this._headers
     }).then((response) => this._handleResponse(response))
   }
 
   removeLike(id) {
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: 'DELETE',
+      headers: this._headers
+    }).then((response) => this._handleResponse(response))
+  }
+
+  updateAvatar(userData) {
+    return fetch(`${this._address}/users/me/avatar`, {
+      method: 'PATCH',
       headers: this._headers,
+      body: JSON.stringify({
+        avatar: userData.link
+      })
     }).then((response) => this._handleResponse(response))
   }
 }

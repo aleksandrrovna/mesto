@@ -15,7 +15,10 @@
     </header>
     <main class="content">
       <section class="profile page__profile">
-        <img src="<%=require('./images/profile-avatar.jpg')%>" class="profile__avatar" alt="Фото профиля">
+        <div class="profile__avatar-container">
+          <img src="#" class="profile__avatar" alt="Фото профиля">
+          <div class="profile__overlay"></div>
+        </div>
         <div class="profile__info">
           <div class="profile__text">
             <h1 class="profile__name"></h1>
@@ -47,7 +50,7 @@
               value="Исследователь океана" placeholder="Профессиональная деятельность" minlength="2" maxlength="200" required>
             <span class="popup__type-field-error bio-error"></span>
             </label>
-            <button class="popup__save-button" type="submit" aria-label="submit">Сохранить</button>
+            <button class="popup__save-button" id="profile-button" type="submit" aria-label="submit">Сохранить</button>
           </fieldset>
         </form>
       </div>
@@ -69,7 +72,7 @@
                 placeholder="Ссылка на картинку" required>
                 <span class="popup__type-field-error link-error"></span>
               </label>
-              <button class="popup__save-button" type="submit" aria-label="submit">Создать</button>
+              <button class="popup__save-button" id="place-button" type="submit" aria-label="submit">Создать</button>
             </fieldset>
           </form>
         </div>
@@ -84,9 +87,9 @@
               <label class="popup__form-field">
                 <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="avatar"
                 placeholder="Ссылка на аватар" required>
-                <span class="popup__type-field-error link-error"></span>
+                <span class="popup__type-field-error avatar-error"></span>
               </label>
-              <button class="popup__save-button" type="submit" aria-label="submit">Сохранить</button>
+              <button class="popup__save-button" id="avatar-button" type="submit" aria-label="submit">Сохранить</button>
             </fieldset>
           </form>
         </div>
@@ -96,7 +99,7 @@
         <div class="popup__container">
           <button class="popup__close" id="confirm-close" type="button" aria-label="close"></button>
           <h3 class="popup__title">Вы уверены?</h3>
-              <button class="popup__save-button" type="submit" aria-label="submit">Да</button>
+              <button class="popup__confirm-button" type="submit" aria-label="submit">Да</button>
             </fieldset>
           </form>
         </div>
