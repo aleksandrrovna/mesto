@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <meta name="author" content="Nastassia Kazak">
   <title lang="en">Mesto</title>
 </head>
+
 <body>
   <div class="page">
     <header class="header page__header">
@@ -42,13 +44,14 @@
           <fieldset class="popup__form-set">
             <label class="popup__form-field">
               <input type="text" class="popup__type-field popup__type-field_input_name" name="name" id="name"
-              value="Жак-Ив Кусто" placeholder="Имя пользователя" minlength="2" maxlength="40" required>
+                value="Жак-Ив Кусто" placeholder="Имя пользователя" minlength="2" maxlength="40" required>
               <span class="popup__type-field-error name-error"></span>
             </label>
             <label class="popup__form-field">
               <input type="text" class="popup__type-field popup__type-field_input_bio" name="bio" id="bio"
-              value="Исследователь океана" placeholder="Профессиональная деятельность" minlength="2" maxlength="200" required>
-            <span class="popup__type-field-error bio-error"></span>
+                value="Исследователь океана" placeholder="Профессиональная деятельность" minlength="2" maxlength="200"
+                required>
+              <span class="popup__type-field-error bio-error"></span>
             </label>
             <button class="popup__save-button" id="profile-button" type="submit" aria-label="submit">Сохранить</button>
           </fieldset>
@@ -57,52 +60,51 @@
     </div>
     <div id="place-popup" class="popup">
       <div class="popup__overlay popup__overlay_background_medium-dark" id="place-overlay"></div>
-        <div class="popup__container">
-          <button class="popup__close" id="place-close" type="button" aria-label="close"></button>
-          <h3 class="popup__title">Новое место</h3>
-          <form id="place-form" class="popup__form" name="Информация о месте" novalidate>
-            <fieldset class="popup__form-set">
-              <label class="popup__form-field">
-                <input type="text" class="popup__type-field popup__type-field_input_place" name="name" id="place"
+      <div class="popup__container">
+        <button class="popup__close" id="place-close" type="button" aria-label="close"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form id="place-form" class="popup__form" name="Информация о месте" novalidate>
+          <fieldset class="popup__form-set">
+            <label class="popup__form-field">
+              <input type="text" class="popup__type-field popup__type-field_input_place" name="name" id="place"
                 placeholder="Название" minlength="2" maxlength="30" required>
-                <span class="popup__type-field-error place-error"></span>
-              </label>
-              <label class="popup__form-field">
-                <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="link"
+              <span class="popup__type-field-error place-error"></span>
+            </label>
+            <label class="popup__form-field">
+              <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="link"
                 placeholder="Ссылка на картинку" required>
-                <span class="popup__type-field-error link-error"></span>
-              </label>
-              <button class="popup__save-button" id="place-button" type="submit" aria-label="submit">Создать</button>
-            </fieldset>
-          </form>
-        </div>
+              <span class="popup__type-field-error link-error"></span>
+            </label>
+            <button class="popup__save-button" id="place-button" type="submit" aria-label="submit">Создать</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
     <div id="avatar-popup" class="popup">
       <div class="popup__overlay popup__overlay_background_medium-dark" id="avatar-overlay"></div>
-        <div class="popup__container">
-          <button class="popup__close" id="avatar-close" type="button" aria-label="close"></button>
-          <h3 class="popup__title">Обновить аватар</h3>
-          <form id="avatar-form" class="popup__form" name="Новый аватар" novalidate>
-            <fieldset class="popup__form-set">
-              <label class="popup__form-field">
-                <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="avatar"
+      <div class="popup__container">
+        <button class="popup__close" id="avatar-close" type="button" aria-label="close"></button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form id="avatar-form" class="popup__form" name="Новый аватар" novalidate>
+          <fieldset class="popup__form-set">
+            <label class="popup__form-field">
+              <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="avatar"
                 placeholder="Ссылка на аватар" required>
-                <span class="popup__type-field-error avatar-error"></span>
-              </label>
-              <button class="popup__save-button" id="avatar-button" type="submit" aria-label="submit">Сохранить</button>
-            </fieldset>
-          </form>
-        </div>
+              <span class="popup__type-field-error avatar-error"></span>
+            </label>
+            <button class="popup__save-button" id="avatar-button" type="submit" aria-label="submit">Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
     <div id="confirm-popup" class="popup">
       <div class="popup__overlay popup__overlay_background_medium-dark" id="confirm-overlay"></div>
-        <div class="popup__container">
-          <button class="popup__close" id="confirm-close" type="button" aria-label="close"></button>
-          <h3 class="popup__title">Вы уверены?</h3>
-              <button class="popup__confirm-button" type="submit" aria-label="submit">Да</button>
-            </fieldset>
-          </form>
-        </div>
+      <div class="popup__container">
+        <button class="popup__close" id="confirm-close" type="button" aria-label="close"></button>
+        <h3 class="popup__title">Вы уверены?</h3>
+        <button class="popup__confirm-button" type="submit" aria-label="submit">Да</button>
+        </form>
+      </div>
     </div>
     <div id="image-popup" class="popup">
       <div class="popup__overlay popup__overlay_background_dark" id="image-overlay"></div>
@@ -127,4 +129,5 @@
     </div>
   </template>
 </body>
+
 </html>
