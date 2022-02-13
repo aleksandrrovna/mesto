@@ -60,7 +60,7 @@
           <form id="place-form" class="popup__form" name="Информация о месте" novalidate>
             <fieldset class="popup__form-set">
               <label class="popup__form-field">
-                <input type="text" class="popup__type-field popup__type-field_input_place" name="place" id="place"
+                <input type="text" class="popup__type-field popup__type-field_input_place" name="name" id="place"
                 placeholder="Название" minlength="2" maxlength="30" required>
                 <span class="popup__type-field-error place-error"></span>
               </label>
@@ -73,7 +73,33 @@
             </fieldset>
           </form>
         </div>
-
+    </div>
+    <div id="avatar-popup" class="popup">
+      <div class="popup__overlay popup__overlay_background_medium-dark" id="avatar-overlay"></div>
+        <div class="popup__container">
+          <button class="popup__close" id="avatar-close" type="button" aria-label="close"></button>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form id="avatar-form" class="popup__form" name="Новый аватар" novalidate>
+            <fieldset class="popup__form-set">
+              <label class="popup__form-field">
+                <input type="url" class="popup__type-field popup__type-field_input_link" name="link" id="avatar"
+                placeholder="Ссылка на аватар" required>
+                <span class="popup__type-field-error link-error"></span>
+              </label>
+              <button class="popup__save-button" type="submit" aria-label="submit">Сохранить</button>
+            </fieldset>
+          </form>
+        </div>
+    </div>
+    <div id="confirm-popup" class="popup">
+      <div class="popup__overlay popup__overlay_background_medium-dark" id="confirm-overlay"></div>
+        <div class="popup__container">
+          <button class="popup__close" id="confirm-close" type="button" aria-label="close"></button>
+          <h3 class="popup__title">Вы уверены?</h3>
+              <button class="popup__save-button" type="submit" aria-label="submit">Да</button>
+            </fieldset>
+          </form>
+        </div>
     </div>
     <div id="image-popup" class="popup">
       <div class="popup__overlay popup__overlay_background_dark" id="image-overlay"></div>
@@ -90,7 +116,10 @@
       <img class="card__image" src="#" alt="#">
       <div class="card__caption">
         <h2 class="card__title"></h2>
-        <button class="card__like-button" type="button" aria-label="like"></button>
+        <div class="card__like">
+          <button class="card__like-button" type="button" aria-label="like"></button>
+          <p class="card__like-number"></p>
+        </div>
       </div>
     </div>
   </template>

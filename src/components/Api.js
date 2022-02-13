@@ -40,4 +40,25 @@ export class Api {
       body: JSON.stringify(cardObject)
     }).then((response) => this._handleResponse(response))
   }
+
+  removeCard(cardObject) {
+    return fetch(`${this._address}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    }).then((response) => this._handleResponse(response))
+  }
+
+  putLike(id) {
+    return fetch(`${this._address}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then((response) => this._handleResponse(response))
+  }
+
+  removeLike(id) {
+    return fetch(`${this._address}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then((response) => this._handleResponse(response))
+  }
 }

@@ -6,6 +6,7 @@
   min-width: 22px;
   min-height: 19px;
   transition: opacity 0.5s linear;
+  margin-bottom: 3px;
 }
 
 @media screen and (min-width: 1024px) {
