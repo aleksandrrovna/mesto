@@ -78,11 +78,13 @@ const renderCard = (item) => {
     handleCardClick: () => {
       popupWithImage.open(item);
     },
-    userId: userInfo.getId(),
-    handleCardRemove: () => {
+    userId: () => {
+      userInfo.getId();
+    },
+    handleCardRemove: (item) => {
       removeCardWindow(item);
     },
-    handleCardLike: () => {
+    handleCardLike: (item) => {
       likeCard(item);
     }
   });

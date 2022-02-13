@@ -6,7 +6,7 @@ export class Card {
     this._ownerId = data.owner._id;
     this._userId = userId;
     this._cardId = data._id;
-    this._isLike = data.likes.some(item => item._id == this._userID);
+    this._isLike = data.likes.some(item => item._id == this._userId);
 
     this._selector = selector;
     this._handleCardClick = handleCardClick;
@@ -32,10 +32,10 @@ export class Card {
 
   _addEventListeners() {
     this._like.addEventListener('click', () => {
-      this._handleCardLike();
+      this._handleCardLike(this);
     });
-    this._trash.addEventListener('click', (evt) => {
-      this._handleCardRemove();
+    this._trash.addEventListener('click', () => {
+      this._handleCardRemove(this);
     });
     this._image.addEventListener('click', () => {
       this._handleCardClick();
