@@ -1,8 +1,14 @@
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
+const updateButton = document.querySelector('.profile__overlay');
+
+const profileButton = document.querySelector('#profile-button');
+const placeButton = document.querySelector('#place-button');
+const avatarButton = document.querySelector('#avatar-button');
 
 const profileForm = document.querySelector('#profile-form');
 const placeForm = document.querySelector('#place-form');
+const AvatarForm = document.querySelector('#avatar-form');
 
 const nameInput = document.querySelector('.popup__type-field_input_name');
 const jobInput = document.querySelector('.popup__type-field_input_bio');
@@ -21,8 +27,13 @@ const enableValidation = {
 export {
   editButton,
   addButton,
+  updateButton,
+  profileButton,
+  placeButton,
+  avatarButton,
   profileForm,
   placeForm,
+  AvatarForm,
   nameInput,
   jobInput,
   placeInput,
