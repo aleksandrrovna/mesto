@@ -78,9 +78,7 @@ const renderCard = (item) => {
     handleCardClick: () => {
       popupWithImage.open(item);
     },
-    userId: () => {
-      userInfo.getId();
-    },
+    userId: userInfo.getId(),
     handleCardRemove: (item) => {
       removeCardWindow(item);
     },
@@ -148,6 +146,7 @@ Promise.all([getServerUserInfo, getServerInitialCards])
       newProfileBio: ServerUserInfo.about,
       // newProfileAvatar: ServerUserInfo.avatar
     });
+    userInfo.setId(ServerUserInfo._id);
     cardList.renderItems(ServerInitialCards);
   })
   .catch((error) => {
