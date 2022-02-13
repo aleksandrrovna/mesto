@@ -109,7 +109,7 @@ const handlePlaceFormSubmit = (newCardData) => {
       popupWithPlaceForm.close();
     })
     .catch((error) => {
-      console.log(`Ошибка добавления новой карточки ${error}`)
+      console.log(`Ошибка добавления новой карточки ${error}`);
     })
 };
 

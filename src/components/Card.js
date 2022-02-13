@@ -49,6 +49,9 @@ export class Card {
     this._likeCounter.textContent = this._likes;
     if (this._ownerId != this._userId) {
       this._trash.classList.add('card__trash-button_hidden');
+    };
+    if (this._isLike) {
+      this._like.classList.add('card__like-button_active');
     }
 
     this._addEventListeners();
