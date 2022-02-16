@@ -61,6 +61,7 @@ const userInfo = new UserInfo({
 
 // Обработчик сабмита формы редактирования профиля
 const handleProfileFormSubmit = (newProfileData) => {
+  profileButton.textContent = 'Сохранение...';
   api.editProfile(newProfileData)
     .then((response) => {
       userInfo.setUserInfo({
@@ -68,7 +69,6 @@ const handleProfileFormSubmit = (newProfileData) => {
         newProfileBio: response.about,
         newProfileAvatar: response.avatar
       });
-      profileButton.textContent = 'Сохранение...';
       popupWithProfileForm.close();
     })
     .catch((error) => {
@@ -107,10 +107,10 @@ const cardList = new Section({
 
 // Обработчик сабмита формы добавления места
 const handlePlaceFormSubmit = (newCardData) => {
+  placeButton.textContent = 'Создание...';
   api.addCard(newCardData)
     .then((response) => {
       const addedCard = renderCard(response);
-      placeButton.textContent = 'Создание...';
       cardList.addItem(addedCard);
       addCardFormValidator.deactivateButton();
       popupWithPlaceForm.close();
@@ -125,14 +125,15 @@ const handlePlaceFormSubmit = (newCardData) => {
 
 // Обработчик сабмита формы обновления аватара
 const handleAvatarFormSubmit = (newAvatar) => {
+  avatarButton.textContent = 'Сохранение...';
   api.updateAvatar(newAvatar)
+
     .then((response) => {
       userInfo.setUserInfo({
         newProfileName: response.name,
         newProfileBio: response.about,
         newProfileAvatar: response.avatar
       });
-      avatarButton.textContent = 'Сохранение...';
       popupWithAvatarForm.close();
     })
     .catch((error) => {
